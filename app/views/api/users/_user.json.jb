@@ -1,0 +1,10 @@
+result = {
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  role: user.role,
+  status: user.status,
+  rooms: user.rooms.map {|room| render partial: "api/rooms/room.json.jb", locals: {room: room}}
+}
+
+result
