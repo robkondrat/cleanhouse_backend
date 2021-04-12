@@ -15,4 +15,26 @@ class Api::RoomsController < ApplicationController
     render "show.json.jb"
   end
 
+  def show
+    @room = Room.find_by(id: params[:id])
+    render "show.json.jb"
+  end
+
+  def update
+    @room = Room.find_by(id: params[:id])
+    @room.number = params[:number] || @room.number
+    @room.floor = params[:floor] || @room.floor
+    @room.room_type = params[:room_type] || @room.room_type
+    @room.status = params[:status] || @room.status
+    @room.user_id = params[:user_id] || @room.user_id
+    @room.save
+    render "show.json.jb"
+  end
+
+  def destroy
+    room = Room.find_by(id: params[:id])
+    room.destroy
+    render json: {message: "Room successfully destroyed."}
+  end
+
 end
