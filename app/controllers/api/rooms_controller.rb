@@ -9,7 +9,8 @@ class Api::RoomsController < ApplicationController
       number: params[:number],
       floor: params[:floor],
       room_type: params[:room_type],
-      status: params[:status]
+      status: params[:status],
+      user_id: current_user.id
     )
     @room.save
     render "show.json.jb"
