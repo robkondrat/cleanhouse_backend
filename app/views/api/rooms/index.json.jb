@@ -1,0 +1,9 @@
+@rooms.map do |room| 
+  {
+    id: room.id,
+    number: room.number,
+    floor: room.floor,
+    room_type: room.room_type,
+    user_id: room.user_id
+  }
+end
