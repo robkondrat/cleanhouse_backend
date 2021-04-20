@@ -28,8 +28,12 @@ class Api::RoomsController < ApplicationController
     @room.room_type = params[:room_type] || @room.room_type
     @room.status = params[:status] || @room.status
     @room.user_id = params[:user_id] || @room.user_id
-    @room.save
-    render "show.json.jb"
+    
+    if @room.save 
+      render "show.json.jb"
+    else
+      render json: { errors: @room.errors.full_messages }, status: :unprocessable_entity
+    end    
   end
 
   def destroy
